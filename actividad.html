@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Prueba 1</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .actividad {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Round_bottom_flask.svg/800px-Round_bottom_flask.svg.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            padding-bottom: 20px;
+        }
+
+        .frase {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        input[type="text"] {
+            width: 100px;
+            padding: 5px;
+            font-size: 1em;
+            text-align: center;
+            text-transform: lowercase;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            border: 2px solid #ccc;
+            padding: 30px;
+            border-radius: 10px;
+            z-index: 1000;
+        }
+
+        .popup.success {
+            color: green;
+            border-color: green;
+        }
+
+        .popup.error {
+            color: red;
+            border-color: red;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Prueba 1</h1>
+
+    <div class="actividad">
+        <div class="frase">
+            Esto es un 
+            <input type="text" id="input1" maxlength="10"> 
+            de fondo 
+            <input type="text" id="input2" maxlength="10">.
+        </div>
+        <button onclick="verificar()">Verificar</button>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="popup success" id="popup-success">
+        <h2>¡Enhorabuena!</h2>
+        <p>Pasas a la siguiente prueba.</p>
+    </div>
+
+    <div class="popup error" id="popup-error">
+        <h2>¡Vuelve a intentarlo!</h2>
+        <p>Debes acertar todas para pasar a la siguiente prueba.</p>
+        <button onclick="cerrarPopup()">Cerrar</button>
+    </div>
+
+    <script>
+        const respuestas = {
+            input1: "matraz",
+            input2: "redondo"
+        };
+
+        function verificar() {
+            let aciertos = 0;
+            let total = Object.keys(respuestas).length;
+
+            Object.keys(respuestas).forEach(id => {
+                const input = document.getElementById(id);
+                if (input.value === respuestas[id]) {
+                    input.disabled = true;
+                    aciertos++;
+                } else {
+                    input.value = "";
+                }
+            });
+
+            if (aciertos === total) {
+                document.getElementById("overlay").style.display = "block";
+                document.getElementById("popup-success").style.display = "block";
+            } else {
+                document.getElementById("overlay").style.display = "block";
+                document.getElementById("popup-error").style.display = "block";
+            }
+        }
+
+        function cerrarPopup() {
+            document.getElementById("popup-error").style.display = "none";
+            document.getElementById("overlay").style.display = "none";
+        }
+    </script>
+</body>
+</html>
