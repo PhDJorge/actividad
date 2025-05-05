@@ -1,0 +1,81 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 3em;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.actividad {
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Round_bottom_flask.svg/800px-Round_bottom_flask.svg.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+.frase {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+input[type="text"] {
+    width: 100px;
+    padding: 5px;
+    font-size: 1em;
+    text-align: center;
+    text-transform: lowercase;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 2px solid #ccc;
+    padding: 30px;
+    border-radius: 10px;
+    z-index: 1000;
+}
+
+.popup.success {
+    color: green;
+    border-color: green;
+}
+
+.popup.error {
+    color: red;
+    border-color: red;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+}
